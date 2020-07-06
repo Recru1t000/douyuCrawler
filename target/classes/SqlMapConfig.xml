@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis的主配置文件 -->
+<configuration>
+    <!-- 配置properties可以直接连接外部文件配置数据库
+    <properties resource="jdbcConfig.properties"></properties>
+
+    下面就要改成,因为要和文件中的属性名保持一致
+    <dataSource type="POOLED">
+    <property name="driver" value="${jdbc.driver}"/>
+    <property name="url" value="${jdbc.url}"/>
+    <property name="username" value="${jdbc.name}"/>
+    <property name="password" value="${jdbc.password}"/>
+</dataSource>
+    -->
+    <properties resource="jdbc.properties"></properties>
+    <!-- 配置环境 -->
+    <environments default="mysql">
+        <environment id="mysql">
+            <!-- 配置mysql的环境-->
+            <transactionManager type="JDBC"></transactionManager>
+
+            <!-- 配置数据源（连接池）-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件 -->
+    <mappers>
+
+        <mapper class="com.recruit.dao.IcreateDatabaseDao"></mapper>
+        <mapper class="com.recruit.dao.IchatMsgDao"></mapper>
+        <mapper class="com.recruit.dao.IdbgDao"></mapper>
+        <mapper class="com.recruit.dao.InobleNumInfoDao"></mapper>
+        <mapper class="com.recruit.dao.IgiftDao"></mapper>
+        <mapper class="com.recruit.dao.IuserDao"></mapper>
+
+    </mappers>
+</configuration>
